@@ -6,12 +6,23 @@ import {
   View,
   Environment,
   VrButton,
-  asset
+  asset,
+  Animated
 } from 'react-360';
 import PointLight from 'PointLight';
 import Entity from 'Entity';
 
+const AnimatedEntity = Animated.createAnimatedComponent(Entity);
+
 export default class Deer extends React.Component {
+  rotation = new Animated.Value(0);
+
+  componentDidMount(){
+    // if (nextProps.current !== this.props.current) {
+      this.rotation.setValue(0);
+      Animated.timing(this.rotation, {toValue: 360, duration: 20000}).start();
+    // }
+  }
   /////Entity styles
   /*
  translateX = horizontal axis
@@ -27,8 +38,9 @@ export default class Deer extends React.Component {
   render() {
     return (
       <View style={styles.panel}>
-        <Entity source={{obj: asset('./deer.obj')}}
+        <AnimatedEntity source={{obj: asset('./deer.obj')}}
           style={{transform: [
+            {rotateY:this.rotation},
             {translateX:0},
             {translateY:-400},
             {translateZ:0},
@@ -36,7 +48,6 @@ export default class Deer extends React.Component {
             {scaleZ:.5},
             {scaleX:.5},
             {scaleY:.5}
-
           ]}}/>
       </View>
     );

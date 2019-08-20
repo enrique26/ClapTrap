@@ -51,12 +51,12 @@ function init(bundle, parent, options = {}) {
    );
 
   const flatC = new Surface(
-    SIZE2,
-    SIZE2,
-    Surface.SurfaceShape.Flat,
+    1000,
+    800,
+    Surface.SurfaceShape.Cylinder,
   );
   // Render your app content to the default cylinder surface
-  flatC.setAngle(0,0.5);
+  // flatC.setAngle(0,0.5);
   r360.renderToSurface(
     r360.createRoot('Clap360', { name:"main"/* initial props */ }),
     flatC
