@@ -12,7 +12,7 @@ import {
 } from 'react-360';
 import Entity from 'Entity';
 import Deer from './src/deer';
-import Info from './src/info';
+import Clock from './src/clock';
 import Wolf from './src/wolf';
 
 const { AudioModule } = NativeModules;
@@ -105,6 +105,15 @@ export default class Clap360 extends React.Component {
     }
 
   }
+
+  inputPayload(event,inputEvent){
+    // console.log(event)
+    // console.log(inputEvent)
+
+    if(inputEvent.source == "gamepad_0" && inputEvent.button == 5 && !["repeat","up"].includes(inputEvent.action)){
+      this.startMusic();
+    }
+  }
  /////Entity styles
    /*
   translateX = horizontal axis
@@ -120,8 +129,20 @@ export default class Clap360 extends React.Component {
   render() {
     const {playing}=this.state;
     return (
-      <View style={styles.panel}>
+      <View style={styles.panel} onInput={e => {
+        const event = e.nativeEvent; // Extract the value from the runtime
+        // event contains the actual event payload, as well as information on
+        // which cursor the user was using, and which React tag was targeted
+        const inputEvent = event.inputEvent; // Extract the payload
+        // inputEvent.button is the raw button index, used to determine what was pressed
+        // inputEvent.buttonClass is a field added to some buttons for common actions,
+        //   like 'confirm', 'back', 'up', 'down', etc.
+        // inputEvent.action is 'up', 'down', or 'repeat'
+        // inputEvent.source identifies the button device, such as keyboard, mouse, etc
+        this.inputPayload(event,inputEvent)
+      }}>
         <AnimatedEntity
+          onLayout={(event)=>{console.log(event)}}
           source={{obj: asset('./eyeball.obj'),mtl: asset('./eyeball.mtl')}}
           style={{transform: [
             {rotateY:this.rotation},
@@ -219,5 +240,5 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent('Clap360', () => Clap360);
 AppRegistry.registerComponent('Deer', () => Deer);
-AppRegistry.registerComponent('Info', () => Info);
+AppRegistry.registerComponent('Clock', () => Clock);
 AppRegistry.registerComponent('Wolf', () => Wolf);

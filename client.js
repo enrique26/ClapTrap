@@ -22,7 +22,7 @@ function init(bundle, parent, options = {}) {
    );
    sphereSurface.setAngle(Math.PI, 0);
    r360.renderToSurface(
-     r360.createRoot('Info', { name: 'Sphere' }),
+     r360.createRoot('Clock', { name: 'Sphere' }),
      sphereSurface,
    );
 
