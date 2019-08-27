@@ -6,6 +6,7 @@ import {
   View,
   Environment,
   VrButton,
+  Image,
   asset
 } from 'react-360';
 import moment from 'moment'
@@ -89,23 +90,23 @@ export default class Clock extends React.Component {
     var timer = (hours < 10 ? "0"+hours:hours) +":"+(minutes < 10 ? "0"+minutes:minutes)+":"+(seconds < 10 ? "0"+seconds:seconds)
 
     return (
-      <View style={styles.panel}>
-      <View style={styles.outer}>
-        <View style={styles.inner}>
+      <View style={stylesClock.panel}>
+      <Image style={stylesClock.outer} source={asset('gradient1.jpg')}>
+        <Image style={stylesClock.inner} source={asset('gradient2.jpg')}>
           {/*<Text style={styles.time}>
           this.state.time}</Text>
           */}
-          <Text style={styles.time}>{timer}</Text>
-        </View>
-        <View style={styles.mostInner}>
+          <Text style={stylesClock.time}>{timer}</Text>
+        </Image>
+        <Image style={stylesClock.mostInner} source={asset('gradientButton1.png')}>
 
           {/*<Text style={styles.amPm}>{this.state.amPm}</Text>*/}
             <VrButton onClick={()=>{ this.state.isOn ? this.stopTimer():this.startTimer()}}>
-              <Text style={styles.amPm}>{this.state.isOn ? "Stop":"Start"}</Text>
+              <Text style={stylesClock.amPm}>{this.state.isOn ? "Stop":"Start"}</Text>
             </VrButton>
-        </View>
+        </Image>
 
-      </View>
+      </Image>
       </View>
     );
   }
@@ -113,24 +114,14 @@ export default class Clock extends React.Component {
 
 
 
-
-const styles = StyleSheet.create({
+const stylesClock = StyleSheet.create({
   panel: {
     // Fill the entire surface
     width: 400,
-    height: 300,
+    height: 400,
     backgroundColor: 'rgba(185, 255, 185, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  greetingBox: {
-    padding: 20,
-    backgroundColor: '#000000',
-    borderColor: '#639dda',
-    borderWidth: 2,
-  },
-  greeting: {
-    fontSize: 30,
   },
   outer:{
     position: "relative",
@@ -160,11 +151,8 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     marginTop: -20,
     marginLeft: 120,
-    // marginRight: 50,
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
     justifyContent:'center'
-    // backgroundRepeat: "no-repeat",
-    // backgroundAttachment: "fixed"
   },
 
   time:{
@@ -178,8 +166,9 @@ const styles = StyleSheet.create({
     position: "relative",
     // display: "flex",
     alignSelf:"center",
-    marginTop: -5,
+    // marginTop: -5,
     color: "white",
-    fontSize: 32
+    fontSize: 22,
+    fontWeight:'bold'
   }
-});
+})

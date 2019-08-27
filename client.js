@@ -16,13 +16,13 @@ function init(bundle, parent, options = {}) {
 
    // SPHERE
    const sphereSurface = new Surface(
-     SIZE,
-     SIZE,
+     1300,
+     1100,
      Surface.SurfaceShape.Flat,
    );
    sphereSurface.setAngle(Math.PI, 0);
    r360.renderToSurface(
-     r360.createRoot('Clock', { name: 'Sphere' }),
+     r360.createRoot('Puzzle', { name: 'Puzzle' }),
      sphereSurface,
    );
 
@@ -63,7 +63,7 @@ function init(bundle, parent, options = {}) {
   );
 
   // Load the initial environment
-  r360.compositor.setBackground(r360.getAssetURL('cb.jpg'));
+  r360.compositor.setBackground(r360.getAssetURL('city.jpg'));
 
 }
 

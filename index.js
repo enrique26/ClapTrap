@@ -12,7 +12,7 @@ import {
 } from 'react-360';
 import Entity from 'Entity';
 import Deer from './src/deer';
-import Clock from './src/clock';
+import Puzzle from './src/puzzle';
 import Wolf from './src/wolf';
 
 const { AudioModule } = NativeModules;
@@ -240,5 +240,5 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent('Clap360', () => Clap360);
 AppRegistry.registerComponent('Deer', () => Deer);
-AppRegistry.registerComponent('Clock', () => Clock);
+AppRegistry.registerComponent('Puzzle', () => Puzzle);
 AppRegistry.registerComponent('Wolf', () => Wolf);
